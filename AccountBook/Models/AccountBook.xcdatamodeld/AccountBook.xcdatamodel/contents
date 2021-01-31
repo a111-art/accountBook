@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17707" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+        <attribute name="bookName" attributeType="String"/>
+        <attribute name="comment" attributeType="String" defaultValueString=""/>
+        <attribute name="img" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="money" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="studentNum" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="top" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="costs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Cost" inverseName="parentBook" inverseEntity="Cost"/>
+    </entity>
+    <entity name="Cost" representedClassName=".Cost" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="money" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="parentBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="costs" inverseEntity="Book"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="cost" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="cost" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cost" inverseName="tag" inverseEntity="Cost"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="Cost" positionX="-54" positionY="18" width="128" height="133"/>
+        <element name="Tag" positionX="-63" positionY="45" width="128" height="73"/>
+    </elements>
+</model>

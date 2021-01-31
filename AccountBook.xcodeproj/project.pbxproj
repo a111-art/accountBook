@@ -3,29 +3,69 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF20A21A25C408BC00B5521E /* CostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF20A21925C408BC00B5521E /* CostDetailController.swift */; };
+		AF60B42625BC3A91009EEB8D /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60B42425BC3A91009EEB8D /* BookCell.swift */; };
+		AF60B42725BC3A91009EEB8D /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF60B42525BC3A91009EEB8D /* BookCell.xib */; };
+		AF62235B25BD1EEE0073087E /* HelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF62235A25BD1EEE0073087E /* HelpController.swift */; };
+		AF62CFF325C0092900C10E74 /* PickMonthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF62CFF225C0092900C10E74 /* PickMonthController.swift */; };
+		AF62CFF625C018FA00C10E74 /* PieChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF62CFF525C018FA00C10E74 /* PieChartController.swift */; };
+		AF6314CC25BFB48F004A79FD /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6314CB25BFB48F004A79FD /* BookDetailController.swift */; };
+		AF634C2825C3B07E006CB4F7 /* pieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF634C2625C3B07E006CB4F7 /* pieCell.swift */; };
+		AF634C2925C3B07E006CB4F7 /* pieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF634C2725C3B07E006CB4F7 /* pieCell.xib */; };
+		AF63F74725C19488009A6B0C /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63F74625C19488009A6B0C /* TextFieldCell.swift */; };
+		AF6879B225B950BB008262B2 /* CustomizedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6879B125B950BB008262B2 /* CustomizedTabBar.swift */; };
+		AF6E6FFD25AF315600F319A9 /* CostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6E6FFC25AF315600F319A9 /* CostViewController.swift */; };
+		AF6E700225AF32D700F319A9 /* CostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6E700025AF32D700F319A9 /* CostCell.swift */; };
+		AF6E700325AF32D700F319A9 /* CostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF6E700125AF32D700F319A9 /* CostCell.xib */; };
+		AF6E700625AF377C00F319A9 /* AddCostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6E700525AF377C00F319A9 /* AddCostController.swift */; };
 		AF709BB625AC45770070C4E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF709BB525AC45770070C4E9 /* AppDelegate.swift */; };
 		AF709BB825AC45770070C4E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF709BB725AC45770070C4E9 /* SceneDelegate.swift */; };
-		AF709BBA25AC45770070C4E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF709BB925AC45770070C4E9 /* ViewController.swift */; };
 		AF709BBD25AC45770070C4E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF709BBB25AC45770070C4E9 /* Main.storyboard */; };
 		AF709BC025AC45770070C4E9 /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF709BBE25AC45770070C4E9 /* AccountBook.xcdatamodeld */; };
 		AF709BC225AC45780070C4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF709BC125AC45780070C4E9 /* Assets.xcassets */; };
 		AF709BC525AC45780070C4E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF709BC325AC45780070C4E9 /* LaunchScreen.storyboard */; };
+		AF709BD325AC49870070C4E9 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF709BD225AC49870070C4E9 /* BookViewController.swift */; };
+		AF709BD625AC4B230070C4E9 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF709BD525AC4B230070C4E9 /* AddBookController.swift */; };
+		AFBEBB0F25B1BF4500C2AE46 /* CalculateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBEBB0E25B1BF4500C2AE46 /* CalculateResult.swift */; };
+		AFC2C36C25B45914001C8CB9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC2C36B25B45914001C8CB9 /* SearchViewController.swift */; };
+		BCC95DECCEE8481E24AA6234 /* Pods_AccountBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F60BDEE46A4A08E22D32342 /* Pods_AccountBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F60BDEE46A4A08E22D32342 /* Pods_AccountBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccountBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46300324A322F73D8062E4F0 /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
+		4BAAF13C7F403068911F8C5E /* Pods-AccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.debug.xcconfig"; path = "Target Support Files/Pods-AccountBook/Pods-AccountBook.debug.xcconfig"; sourceTree = "<group>"; };
+		AF20A21925C408BC00B5521E /* CostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostDetailController.swift; sourceTree = "<group>"; };
+		AF60B42425BC3A91009EEB8D /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		AF60B42525BC3A91009EEB8D /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
+		AF62235A25BD1EEE0073087E /* HelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpController.swift; sourceTree = "<group>"; };
+		AF62CFF225C0092900C10E74 /* PickMonthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMonthController.swift; sourceTree = "<group>"; };
+		AF62CFF525C018FA00C10E74 /* PieChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartController.swift; sourceTree = "<group>"; };
+		AF6314CB25BFB48F004A79FD /* BookDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
+		AF634C2625C3B07E006CB4F7 /* pieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pieCell.swift; sourceTree = "<group>"; };
+		AF634C2725C3B07E006CB4F7 /* pieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pieCell.xib; sourceTree = "<group>"; };
+		AF63F74625C19488009A6B0C /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		AF6879B125B950BB008262B2 /* CustomizedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTabBar.swift; sourceTree = "<group>"; };
+		AF6E6FFC25AF315600F319A9 /* CostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostViewController.swift; sourceTree = "<group>"; };
+		AF6E700025AF32D700F319A9 /* CostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostCell.swift; sourceTree = "<group>"; };
+		AF6E700125AF32D700F319A9 /* CostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CostCell.xib; sourceTree = "<group>"; };
+		AF6E700525AF377C00F319A9 /* AddCostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCostController.swift; sourceTree = "<group>"; };
 		AF709BB225AC45770070C4E9 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF709BB525AC45770070C4E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF709BB725AC45770070C4E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF709BB925AC45770070C4E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF709BBC25AC45770070C4E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF709BBF25AC45770070C4E9 /* AccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountBook.xcdatamodel; sourceTree = "<group>"; };
 		AF709BC125AC45780070C4E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF709BC425AC45780070C4E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF709BC625AC45780070C4E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF709BD225AC49870070C4E9 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		AF709BD525AC4B230070C4E9 /* AddBookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
+		AFBEBB0E25B1BF4500C2AE46 /* CalculateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateResult.swift; sourceTree = "<group>"; };
+		AFC2C36B25B45914001C8CB9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +73,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCC95DECCEE8481E24AA6234 /* Pods_AccountBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6579C6113C5299B67B64E83B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F60BDEE46A4A08E22D32342 /* Pods_AccountBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AF709BA925AC45770070C4E9 = {
 			isa = PBXGroup;
 			children = (
 				AF709BB425AC45770070C4E9 /* AccountBook */,
 				AF709BB325AC45770070C4E9 /* Products */,
+				E3B4C32F87168293803A8378 /* Pods */,
+				6579C6113C5299B67B64E83B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +109,59 @@
 		AF709BB425AC45770070C4E9 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				AF709BCE25AC47660070C4E9 /* Controllers */,
+				AF709BCD25AC45940070C4E9 /* Models */,
 				AF709BB525AC45770070C4E9 /* AppDelegate.swift */,
 				AF709BB725AC45770070C4E9 /* SceneDelegate.swift */,
-				AF709BB925AC45770070C4E9 /* ViewController.swift */,
 				AF709BBB25AC45770070C4E9 /* Main.storyboard */,
 				AF709BC125AC45780070C4E9 /* Assets.xcassets */,
 				AF709BC325AC45780070C4E9 /* LaunchScreen.storyboard */,
 				AF709BC625AC45780070C4E9 /* Info.plist */,
-				AF709BBE25AC45770070C4E9 /* AccountBook.xcdatamodeld */,
+				AF634C2725C3B07E006CB4F7 /* pieCell.xib */,
+				AF60B42525BC3A91009EEB8D /* BookCell.xib */,
+				AF6E700125AF32D700F319A9 /* CostCell.xib */,
 			);
 			path = AccountBook;
+			sourceTree = "<group>";
+		};
+		AF709BCD25AC45940070C4E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF709BBE25AC45770070C4E9 /* AccountBook.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AF709BCE25AC47660070C4E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF709BD225AC49870070C4E9 /* BookViewController.swift */,
+				AF709BD525AC4B230070C4E9 /* AddBookController.swift */,
+				AF6E6FFC25AF315600F319A9 /* CostViewController.swift */,
+				AF6E700525AF377C00F319A9 /* AddCostController.swift */,
+				AFC2C36B25B45914001C8CB9 /* SearchViewController.swift */,
+				AF62235A25BD1EEE0073087E /* HelpController.swift */,
+				AF6314CB25BFB48F004A79FD /* BookDetailController.swift */,
+				AF20A21925C408BC00B5521E /* CostDetailController.swift */,
+				AF62CFF225C0092900C10E74 /* PickMonthController.swift */,
+				AF62CFF525C018FA00C10E74 /* PieChartController.swift */,
+				AF63F74625C19488009A6B0C /* TextFieldCell.swift */,
+				AF60B42425BC3A91009EEB8D /* BookCell.swift */,
+				AF6E700025AF32D700F319A9 /* CostCell.swift */,
+				AF634C2625C3B07E006CB4F7 /* pieCell.swift */,
+				AF6879B125B950BB008262B2 /* CustomizedTabBar.swift */,
+				AFBEBB0E25B1BF4500C2AE46 /* CalculateResult.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E3B4C32F87168293803A8378 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BAAF13C7F403068911F8C5E /* Pods-AccountBook.debug.xcconfig */,
+				46300324A322F73D8062E4F0 /* Pods-AccountBook.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF709BC925AC45780070C4E9 /* Build configuration list for PBXNativeTarget "AccountBook" */;
 			buildPhases = (
+				DF4ACC44BC9310EC3E4EC236 /* [CP] Check Pods Manifest.lock */,
 				AF709BAE25AC45770070C4E9 /* Sources */,
 				AF709BAF25AC45770070C4E9 /* Frameworks */,
 				AF709BB025AC45770070C4E9 /* Resources */,
+				101CCE128DB1FEBA7C833AAD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,23 +223,83 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6E700325AF32D700F319A9 /* CostCell.xib in Resources */,
+				AF60B42725BC3A91009EEB8D /* BookCell.xib in Resources */,
 				AF709BC525AC45780070C4E9 /* LaunchScreen.storyboard in Resources */,
 				AF709BC225AC45780070C4E9 /* Assets.xcassets in Resources */,
+				AF634C2925C3B07E006CB4F7 /* pieCell.xib in Resources */,
 				AF709BBD25AC45770070C4E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		101CCE128DB1FEBA7C833AAD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF4ACC44BC9310EC3E4EC236 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccountBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AF709BAE25AC45770070C4E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6314CC25BFB48F004A79FD /* BookDetailController.swift in Sources */,
+				AF62CFF625C018FA00C10E74 /* PieChartController.swift in Sources */,
+				AFC2C36C25B45914001C8CB9 /* SearchViewController.swift in Sources */,
 				AF709BC025AC45770070C4E9 /* AccountBook.xcdatamodeld in Sources */,
-				AF709BBA25AC45770070C4E9 /* ViewController.swift in Sources */,
+				AF63F74725C19488009A6B0C /* TextFieldCell.swift in Sources */,
+				AF6E700225AF32D700F319A9 /* CostCell.swift in Sources */,
+				AF634C2825C3B07E006CB4F7 /* pieCell.swift in Sources */,
+				AF60B42625BC3A91009EEB8D /* BookCell.swift in Sources */,
+				AF20A21A25C408BC00B5521E /* CostDetailController.swift in Sources */,
+				AF709BD325AC49870070C4E9 /* BookViewController.swift in Sources */,
+				AF6E6FFD25AF315600F319A9 /* CostViewController.swift in Sources */,
+				AFBEBB0F25B1BF4500C2AE46 /* CalculateResult.swift in Sources */,
+				AF62235B25BD1EEE0073087E /* HelpController.swift in Sources */,
+				AF62CFF325C0092900C10E74 /* PickMonthController.swift in Sources */,
+				AF6E700625AF377C00F319A9 /* AddCostController.swift in Sources */,
 				AF709BB625AC45770070C4E9 /* AppDelegate.swift in Sources */,
+				AF6879B225B950BB008262B2 /* CustomizedTabBar.swift in Sources */,
 				AF709BB825AC45770070C4E9 /* SceneDelegate.swift in Sources */,
+				AF709BD625AC4B230070C4E9 /* AddBookController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +379,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -278,6 +434,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -287,11 +444,14 @@
 		};
 		AF709BCA25AC45780070C4E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BAAF13C7F403068911F8C5E /* Pods-AccountBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S4F6G4AS2;
 				INFOPLIST_FILE = AccountBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,11 +465,14 @@
 		};
 		AF709BCB25AC45780070C4E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46300324A322F73D8062E4F0 /* Pods-AccountBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S4F6G4AS2;
 				INFOPLIST_FILE = AccountBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
