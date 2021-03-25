@@ -109,18 +109,16 @@
 		AF709BB425AC45770070C4E9 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				AFA17EC9260CBC6F00ED0154 /* View */,
 				AF709BCE25AC47660070C4E9 /* Controllers */,
 				AF709BCD25AC45940070C4E9 /* Models */,
-				AF709BB525AC45770070C4E9 /* AppDelegate.swift */,
-				AF709BB725AC45770070C4E9 /* SceneDelegate.swift */,
 				AFBEBB0E25B1BF4500C2AE46 /* CalculateResult.swift */,
+				AF709BB725AC45770070C4E9 /* SceneDelegate.swift */,
+				AF709BB525AC45770070C4E9 /* AppDelegate.swift */,
 				AF709BBB25AC45770070C4E9 /* Main.storyboard */,
 				AF709BC125AC45780070C4E9 /* Assets.xcassets */,
 				AF709BC325AC45780070C4E9 /* LaunchScreen.storyboard */,
 				AF709BC625AC45780070C4E9 /* Info.plist */,
-				AF634C2725C3B07E006CB4F7 /* pieCell.xib */,
-				AF60B42525BC3A91009EEB8D /* BookCell.xib */,
-				AF6E700125AF32D700F319A9 /* CostCell.xib */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -146,13 +144,23 @@
 				AF20A21925C408BC00B5521E /* CostDetailController.swift */,
 				AF62CFF225C0092900C10E74 /* PickMonthController.swift */,
 				AF62CFF525C018FA00C10E74 /* PieChartController.swift */,
-				AF6879B125B950BB008262B2 /* CustomizedTabBar.swift */,
-				AF63F74625C19488009A6B0C /* TextFieldCell.swift */,
-				AF60B42425BC3A91009EEB8D /* BookCell.swift */,
-				AF6E700025AF32D700F319A9 /* CostCell.swift */,
-				AF634C2625C3B07E006CB4F7 /* pieCell.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AFA17EC9260CBC6F00ED0154 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF6E700125AF32D700F319A9 /* CostCell.xib */,
+				AF60B42525BC3A91009EEB8D /* BookCell.xib */,
+				AF634C2725C3B07E006CB4F7 /* pieCell.xib */,
+				AF634C2625C3B07E006CB4F7 /* pieCell.swift */,
+				AF6E700025AF32D700F319A9 /* CostCell.swift */,
+				AF60B42425BC3A91009EEB8D /* BookCell.swift */,
+				AF63F74625C19488009A6B0C /* TextFieldCell.swift */,
+				AF6879B125B950BB008262B2 /* CustomizedTabBar.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		E3B4C32F87168293803A8378 /* Pods */ = {
@@ -449,7 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8S4F6G4AS2;
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8S4F6G4AS2;
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
