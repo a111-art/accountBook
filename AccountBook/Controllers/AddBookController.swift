@@ -18,11 +18,17 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     var imagePicker: UIImagePickerController = UIImagePickerController()
     var imageView = UIImageView()
     
+    let table = UITableView()
+    
     let nameArr = ["账本名称", "班级人数", "添加图片", "班费数额"]
     var name: String = ""
     var num: String = ""
     var money: String = ""
-    let table = UITableView()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +65,7 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(table)
         table.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(btnSave.snp.top).offset(-10)
         }
@@ -158,5 +164,10 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         } else {
             money = textField.text!
         }
+    }
+    //MARK: -textField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

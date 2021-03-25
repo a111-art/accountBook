@@ -13,7 +13,7 @@ protocol AddCost {
     func addCost(name: String, date :Date, money: Float, img: Data?, tagName: String)
 }
 
-class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     var delegate: AddCost?
     
     let datePicker = UIDatePicker()
@@ -48,12 +48,22 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     let inBtn = UIButton()
     let outBtn = UIButton()
     let tagNameLabel = UILabel()
+    
+    //load tags
+    var tagArr = [Tag]()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        loadTags()
         calculateResult = CalculateResult()
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         //imageView.contentMode = .scaleAspectFit
@@ -69,7 +79,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             make.height.equalTo(40)
             make.left.equalToSuperview().offset(10)
             make.width.equalTo(40)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         
         let savebtn = UIButton()
@@ -112,11 +122,13 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             make.left.equalToSuperview().offset(view.frame.size.width/2+5)
             make.height.width.equalTo(outBtn)
         }
-        
+        //MARK: textField
+        nameTextField.delegate = self
         nameTextField.placeholder = "请在此输入备注信息"
         nameTextField.layer.borderColor = UIColor.gray.cgColor
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.cornerRadius = 10
+        nameTextField.returnKeyType = .done
         view.addSubview(nameTextField)
         nameTextField.snp.makeConstraints{ (make) -> Void in
             make.right.equalTo(savebtn)
@@ -130,7 +142,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         resultLabel.snp.makeConstraints{ (make) -> Void in
             make.right.left.equalTo(nameTextField)
             make.height.equalTo(80)
-            make.top.equalTo(nameTextField).offset(50)
+            make.top.equalTo(nameTextField.snp.bottom)
         }
         
         historyLabel.font = .systemFont(ofSize: 20)
@@ -138,8 +150,9 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         historyLabel.snp.makeConstraints{ (make) -> Void in
             make.right.left.equalTo(nameTextField)
             make.height.equalTo(40)
-            make.top.equalTo(resultLabel).offset(80)
+            make.top.equalTo(resultLabel.snp.bottom)
         }
+        
         //MARK: tag UI
         let tagLabel = UILabel()
         tagLabel.text = "选择标签"
@@ -151,11 +164,11 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             make.left.equalTo(nameTextField)
             make.width.equalTo(100)
             make.height.equalTo(40)
-            make.top.equalTo(historyLabel).offset(40)
+            make.top.equalTo(historyLabel.snp.bottom)
         }
         
-        
-        tagNameLabel.text = "聚餐"
+        //default tag or choosed tag
+        tagNameLabel.text = tagArr[0].name
         tagNameLabel.textColor = .blue
         tagNameLabel.layer.borderWidth = 1
         tagNameLabel.textAlignment = .left
@@ -163,118 +176,11 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         tagNameLabel.layer.cornerRadius = 5
         self.view.addSubview(tagNameLabel)
         tagNameLabel.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(tagLabel.snp_rightMargin).offset(10)
+            make.left.equalTo(tagLabel.snp.right).offset(10)
             make.height.equalTo(30)
             make.top.equalTo(tagLabel).offset(5)
         }
         
-        let tagBtn1 = UIButton()
-        tagBtn1.setTitle("聚餐", for: .normal)
-        tagBtn1.backgroundColor = .white
-        tagBtn1.setTitleColor(.gray, for: .normal)
-        tagBtn1.layer.borderWidth = 1
-        tagBtn1.layer.borderColor = UIColor.gray.cgColor
-        tagBtn1.layer.cornerRadius = 5
-        tagBtn1.tag = 1
-        tagBtn1.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
-        self.view.addSubview(tagBtn1)
-        tagBtn1.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(nameTextField)
-            make.width.equalTo(45)
-            make.height.equalTo(30)
-            make.top.equalTo(tagLabel).offset(50)
-        }
-        
-        
-        let tagBtn2 = UIButton()
-        tagBtn2.setTitle("团费", for: .normal)
-        tagBtn2.backgroundColor = .white
-        tagBtn2.setTitleColor(.gray, for: .normal)
-        tagBtn2.layer.borderWidth = 1
-        tagBtn2.layer.borderColor = UIColor.gray.cgColor
-        tagBtn2.layer.cornerRadius = 5
-        tagBtn2.tag = 2
-        tagBtn2.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
-        self.view.addSubview(tagBtn2)
-        tagBtn2.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(tagBtn1).offset(50)
-            make.width.equalTo(45)
-            make.height.top.equalTo(tagBtn1)
-        }
-        
-        let tagBtn3 = UIButton()
-        tagBtn3.setTitle("班级活动", for: .normal)
-        tagBtn3.backgroundColor = .white
-        tagBtn3.setTitleColor(.gray, for: .normal)
-        tagBtn3.layer.borderWidth = 1
-        tagBtn3.layer.borderColor = UIColor.gray.cgColor
-        tagBtn3.layer.cornerRadius = 5
-        tagBtn3.tag = 3
-        tagBtn3.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
-        self.view.addSubview(tagBtn3)
-        tagBtn3.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(tagBtn2).offset(50)
-            make.width.equalTo(80)
-            make.height.top.equalTo(tagBtn1)
-        }
-        
-        let tagBtn4 = UIButton()
-        tagBtn4.setTitle("书籍资料", for: .normal)
-        tagBtn4.backgroundColor = .white
-        tagBtn4.setTitleColor(.gray, for: .normal)
-        tagBtn4.layer.borderWidth = 1
-        tagBtn4.layer.borderColor = UIColor.gray.cgColor
-        tagBtn4.layer.cornerRadius = 5
-        tagBtn4.tag = 4
-        tagBtn4.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
-        self.view.addSubview(tagBtn4)
-        tagBtn4.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(tagBtn3).offset(85)
-            make.width.equalTo(80)
-            make.height.top.equalTo(tagBtn1)
-        }
-        
-        let tagBtn = UIButton()
-        tagBtn.setTitle("+自定义", for: .normal)
-        tagBtn.backgroundColor = .white
-        tagBtn.setTitleColor(.gray, for: .normal)
-        tagBtn.layer.borderWidth = 1
-        tagBtn.layer.borderColor = UIColor.gray.cgColor
-        tagBtn.layer.cornerRadius = 5
-        tagBtn.tag = 5
-        self.view.addSubview(tagBtn)
-        tagBtn.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
-        tagBtn.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(nameTextField)
-            make.width.equalTo(80)
-            make.top.equalTo(tagBtn1).offset(40)
-            make.height.equalTo(tagBtn1)
-        }
-        
-        let btnPick = UIButton()
-        btnPick.setTitle("添加图片", for: .normal)
-        btnPick.backgroundColor = .white
-        btnPick.setTitleColor(.blue, for: .normal)
-        btnPick.contentHorizontalAlignment = .right
-        btnPick.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        self.view.addSubview(btnPick)
-        btnPick.addTarget(self, action: #selector(pickAnImage), for: .touchUpInside)
-        btnPick.snp.makeConstraints{ (make) -> Void in
-            make.right.equalTo(nameTextField)
-            make.width.equalTo(120)
-            make.top.equalTo(tagBtn).offset(60)
-            make.height.equalTo(40)
-        }
-        
-        datePicker.datePickerMode = .date
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
-        //datePicker.preferredDatePickerStyle = .wheels
-        view.addSubview(datePicker)
-        datePicker.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(nameTextField)
-            make.width.equalTo(150)
-            make.height.top.equalTo(btnPick)
-        }
         //MARK: - Calculator UI
         let buttonWidth = view.frame.size.width/4
         
@@ -290,7 +196,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             make.left.equalToSuperview().offset(buttonWidth)
             make.width.equalTo(buttonWidth)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            make.height.equalTo(60)
+            make.height.equalTo(50)
         }
         // "."
         let pointButton = UIButton()
@@ -330,7 +236,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             button4.addTarget(self, action: #selector(operationPressed(_:)), for: .touchUpInside)
             button4.snp.makeConstraints{ (make) -> Void in
                 make.right.equalToSuperview()
-                make.bottom.equalTo(zeroButton).offset(-(60*x))
+                make.bottom.equalTo(zeroButton).offset(-(50*x))
                 make.height.width.equalTo(zeroButton)
             }
         }
@@ -345,7 +251,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         delBtn.snp.makeConstraints{ (make) -> Void in
             make.right.equalToSuperview()
             make.height.width.equalTo(zeroButton)
-            make.bottom.equalTo(zeroButton).offset(-180)
+            make.bottom.equalTo(zeroButton).offset(-150)
         }
         //7-9
             for x in 0...2 {
@@ -359,7 +265,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 button3.addTarget(self, action: #selector(numberPressed(_:)), for: .touchUpInside)
                 button3.snp.makeConstraints{ (make) -> Void in
                     make.left.equalToSuperview().offset(buttonWidth * CGFloat(x))
-                    make.bottom.equalTo(zeroButton).offset(-60)
+                    make.bottom.equalTo(zeroButton).offset(-50)
                     make.height.width.equalTo(zeroButton)
                 }
             }
@@ -375,7 +281,7 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 button2.addTarget(self, action: #selector(numberPressed(_:)), for: .touchUpInside)
                 button2.snp.makeConstraints{ (make) -> Void in
                     make.left.equalToSuperview().offset(buttonWidth * CGFloat(x))
-                    make.bottom.equalTo(zeroButton).offset(-120)
+                    make.bottom.equalTo(zeroButton).offset(-100)
                     make.height.width.equalTo(zeroButton)
                 }
             }
@@ -391,11 +297,99 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             button1.addTarget(self, action: #selector(numberPressed(_:)), for: .touchUpInside)
             button1.snp.makeConstraints{ (make) -> Void in
                 make.left.equalToSuperview().offset(buttonWidth * CGFloat(x))
-                make.bottom.equalTo(zeroButton).offset(-180)
+                make.bottom.equalTo(zeroButton).offset(-150)
                 make.height.width.equalTo(zeroButton)
             }
         }
-           
+        
+        let btnPick = UIButton()
+        btnPick.setTitle("添加图片", for: .normal)
+        btnPick.backgroundColor = .white
+        btnPick.setTitleColor(.blue, for: .normal)
+        btnPick.contentHorizontalAlignment = .right
+        btnPick.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        self.view.addSubview(btnPick)
+        btnPick.addTarget(self, action: #selector(pickAnImage), for: .touchUpInside)
+        btnPick.snp.makeConstraints{ (make) -> Void in
+            make.right.equalTo(nameTextField)
+            make.width.equalTo(120)
+            make.bottom.equalTo(delBtn.snp.top)
+            make.height.equalTo(40)
+        }
+        
+        datePicker.datePickerMode = .date
+        datePicker.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
+        //datePicker.preferredDatePickerStyle = .wheels
+        view.addSubview(datePicker)
+        datePicker.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(nameTextField)
+            make.width.equalTo(150)
+            make.height.top.equalTo(btnPick)
+        }
+        
+        let createTagBtn = UIButton()
+        createTagBtn.setTitle("+自定义", for: .normal)
+        createTagBtn.backgroundColor = .white
+        createTagBtn.setTitleColor(.gray, for: .normal)
+        createTagBtn.layer.borderWidth = 1
+        createTagBtn.layer.borderColor = UIColor.gray.cgColor
+        createTagBtn.layer.cornerRadius = 5
+        createTagBtn.tag = 1
+        self.view.addSubview(createTagBtn)
+        createTagBtn.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
+        createTagBtn.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(nameTextField)
+            make.width.equalTo(80)
+            make.bottom.equalTo(datePicker.snp.top)
+            make.height.equalTo(30)
+        }
+        
+        //MARK: -scrollView show tags
+        //show tag btns
+        let tagView = UIScrollView()
+        tagView.backgroundColor = .white
+        tagView.delegate = self
+        tagView.bounces = true
+        tagView.alwaysBounceVertical = true
+        //set btn
+        let btnHeight = CGFloat(30)
+        let rowHeight = CGFloat(35)
+        var index = 0
+        var x : CGFloat = 0
+        var y : CGFloat = 0
+        
+        for i in 0..<tagArr.count {
+            let btnSize = tagArr[i].name!.getLabWidth(font: .systemFont(ofSize: 22), height: btnHeight)
+            if x + btnSize.width > UIScreen.main.bounds.size.width {
+                index += 1
+                x = CGFloat(0)
+                y += rowHeight
+            }
+            let rect = CGRect(x: x, y: y, width: btnSize.width, height: btnHeight)
+            x += btnSize.width + CGFloat(10)
+            
+            let btn = UIButton()
+            btn.frame = rect
+            btn.setTitle(tagArr[i].name, for: .normal)
+            btn.backgroundColor = .white
+            btn.setTitleColor(.gray, for: .normal)
+            btn.titleLabel?.font = .systemFont(ofSize: 18)
+            /*btn.contentHorizontalAlignment = .left
+            btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)*/
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.gray.cgColor
+            btn.layer.cornerRadius = 5
+            btn.tag = 10+i
+            btn.addTarget(self, action: #selector(tagBtn_act), for: .touchUpInside)
+            tagView.addSubview(btn)
+        }
+        view.addSubview(tagView)
+        tagView.snp.makeConstraints{ (make) -> Void in
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.top.equalTo(tagLabel.snp.bottom).offset(10)
+            make.bottom.equalTo(createTagBtn.snp.top)
+        }
         
     }
     //MARK: actions
@@ -414,18 +408,10 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     @objc func tagBtn_act(_ sender: UIButton) {
         switch sender.tag {
         case 1:
-            tagNameLabel.text = "聚餐"
-        case 2:
-            tagNameLabel.text = "团费"
-        case 3:
-            tagNameLabel.text = "班级活动"
-        case 4:
-            tagNameLabel.text = "书籍资料"
-        case 5:
             print("自定义标签")
             self.showAlert()
         default:
-            return
+            tagNameLabel.text = sender.title(for: .normal)
         }
     }
     //MARK: AlertController
@@ -453,12 +439,14 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         self.dismiss(animated: true, completion: nil)
     }
     @objc func save_act () {
+        var theMoney = resultLabel.text!.dropFirst()
+        if Float(theMoney)==nil {
+            theMoney = "0"
+        }
         if let imageData = imageView.image?.pngData(){
-            let theMoney = resultLabel.text!.dropFirst()
             delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Float(theMoney)! * Float(inputType)), img: imageData, tagName: tagNameLabel.text!)
             self.dismiss(animated: true, completion: nil)
         } else {
-            let theMoney = resultLabel.text!.dropFirst()
             delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Float(theMoney)! * Float(inputType)), img: nil, tagName: tagNameLabel.text!)
             self.dismiss(animated: true, completion: nil)
         }
@@ -488,12 +476,18 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     //MARK: - Calculator  actions
     @objc func delete_act() {
         historyLabel.text?.removeLast()
+        let numArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
         if historyLabel.text != "" {
-        history = historyLabel.text! + "="
-        var result: String
-        result = (calculateResult.calculateWithString(s: history))
-        resultLabel.text = "¥"
-        resultLabel.text!.append(result)
+            var str = historyLabel.text
+            let lastStr = String(str![(str?.index(before: str!.endIndex))!])
+            if !(numArray.contains(lastStr)) {
+                str?.removeLast()
+            }
+            history = str! + "="
+            var result: String
+            result = (calculateResult.calculateWithString(s: history))
+            resultLabel.text = "¥"
+            resultLabel.text!.append(result)
         }
     }
     @objc func numberPressed(_ sender: UIButton) {
@@ -532,9 +526,47 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     @ objc func pointPressed(_ sender: UIButton){
         historyLabel.text!.append(".")
     }
+    //MARK: - load tags
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    func loadTags() {
+        let request: NSFetchRequest<Tag> = Tag.fetchRequest()
+        do {
+            tagArr = try context.fetch(request)
+        } catch {
+            print("载入tags错误：\(error)")
+        }
+        let defaultTags = ["聚餐","团费","班级活动","书籍资料"]
+        if tagArr.count == 0 {
+            for i in 0..<defaultTags.count {
+                let newTag = Tag(context: self.context)
+                newTag.name = defaultTags[i]
+                do {
+                    try context.save()
+                }catch{
+                    print("load default tags Failed:\(error)")
+                }
+            }
+            loadTags()
+        }
+        
+    }
+    //MARK: -textField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
- 
-
+}
+//MARK: - extension String
+extension String {
+    /// 通过string动态获取其对应的size
+    /// - font: 字体大小
+    func getLabWidth(font:UIFont,height:CGFloat) -> CGSize {
+        let size = CGSize(width: 900, height: height)
+        let dic = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
+        let strSize = self.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedString.Key : Any], context:nil).size
+        return strSize
+    }
 }
 
 

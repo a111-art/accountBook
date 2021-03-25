@@ -69,6 +69,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         if cell == nil {
             cell = CostCell(style: .default, reuseIdentifier: "CostCell")
         }
+        cell?.tagLabel.text = filteredCosts[indexPath.row].tag?.name
         cell?.nameLabel.text = filteredCosts[indexPath.row].name
         cell?.moneyLabel.text = "\(filteredCosts[indexPath.row].money)"
         cell?.dateLabel.text = self.dateFormatter.string(from: filteredCosts[indexPath.row].date!)

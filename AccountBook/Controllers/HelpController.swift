@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SnapKit
 class HelpController: UIViewController {
 
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class HelpController: UIViewController {
             make.height.equalTo(60)
             make.left.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
         let helpBtn = UIButton()
@@ -77,10 +77,8 @@ class HelpController: UIViewController {
         helpBtn.layer.borderWidth = 1
         self.view.addSubview(helpBtn)
         helpBtn.snp.makeConstraints{ (make) -> Void in
-            make.height.equalTo(askBtn)
+            make.height.width.bottom.equalTo(askBtn)
             make.right.equalToSuperview()
-            make.width.equalTo(askBtn)
-            make.bottom.equalTo(askBtn)
         }
     }
     

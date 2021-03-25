@@ -52,13 +52,17 @@ class PickMonthController: UIViewController, UIPickerViewDataSource, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.title = "选择时间"
+        //self.title = "选择时间"
         
-        navBar.frame = CGRect(x: 0, y: 45, width: view.frame.size.width, height: 44)
         let navItem = UINavigationItem()
         navItem.title = "选择时间"
         navBar.pushItem(navItem, animated: true)
         self.view.addSubview(navBar)
+        navBar.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.width.left.equalToSuperview()
+            make.height.equalTo(40)
+        }
         
         button.setTitle("取消", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -70,7 +74,7 @@ class PickMonthController: UIViewController, UIPickerViewDataSource, UIPickerVie
             make.height.equalTo(40)
             make.left.equalToSuperview().offset(10)
             make.width.equalTo(40)
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(navBar.snp.bottom).offset(5)
         }
         
         savebtn.setTitle("完成", for: .normal)

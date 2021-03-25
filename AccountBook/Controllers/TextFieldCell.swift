@@ -36,6 +36,7 @@ class TextFieldCell: UITableViewCell {
         
         textField = UITextField.init()
         textField = UITextField()
+        textField.returnKeyType = .done
         textField.backgroundColor = .white
         textField.font = .systemFont(ofSize: 20)
         textField.clearButtonMode = .whileEditing

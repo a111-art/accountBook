@@ -25,7 +25,7 @@ class BookViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         //let tabbar = CustomizedTabBar(frame: CGRect(x: 0, y: view.frame.size.height-47, width: view.frame.size.width, height: 47))
         self.view.addSubview(tabbar)
         tabbar.snp.makeConstraints{ (make) -> Void in
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.width.left.equalToSuperview()
             make.height.equalTo(60)
         }
@@ -52,6 +52,7 @@ class BookViewController: UIViewController,UITableViewDelegate, UITableViewDataS
          searchBtn.setTitleColor(.gray, for: .normal)
          searchBtn.setTitle("搜索", for: .normal)
          searchBtn.contentHorizontalAlignment = .left
+        searchBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
          searchBtn.layer.cornerRadius = 5
          searchBtn.layer.borderWidth = 1
          searchBtn.layer.borderColor = UIColor.gray.cgColor
@@ -61,7 +62,7 @@ class BookViewController: UIViewController,UITableViewDelegate, UITableViewDataS
              make.height.equalTo(45)
              make.right.equalToSuperview().offset(-20)
              make.left.equalToSuperview().offset(20)
-             make.top.equalToSuperview().offset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
          }
         //MARK: table
          table.tableFooterView = UIView()
@@ -87,6 +88,12 @@ class BookViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //MARK: -textField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     // MARK: - Table View 方法

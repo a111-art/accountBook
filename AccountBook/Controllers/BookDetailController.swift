@@ -21,6 +21,10 @@ class BookDetailController: UIViewController, UITextFieldDelegate, UITableViewDa
     let switchBtn = UISwitch()
     let deleteBtn = UIButton()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -57,7 +61,7 @@ class BookDetailController: UIViewController, UITextFieldDelegate, UITableViewDa
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(table)
         table.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(deleteBtn.snp.top)
         }
@@ -95,6 +99,7 @@ class BookDetailController: UIViewController, UITextFieldDelegate, UITableViewDa
             cell.selectionStyle = .none
             cell.textField?.delegate = self
             cell.textField.text = book?.comment
+            cell.textField.returnKeyType = .done
             cell.label?.text = "账本备注"
             return cell
         } else if indexPath.section == 1 {
@@ -135,6 +140,11 @@ class BookDetailController: UIViewController, UITextFieldDelegate, UITableViewDa
                     context.delete(costArr[i])
                 }
                 saveBook()
+                let alertController = UIAlertController(title: "已清空流水", message: nil, preferredStyle: .alert)
+                self.present(alertController, animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                }
                 delegate?.reloadBook(book: false)
             }
         }
@@ -225,6 +235,12 @@ class BookDetailController: UIViewController, UITextFieldDelegate, UITableViewDa
            }))
         self.present(alert, animated: true, completion: nil)
        }
+    
+    //MARK: -textField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     /*
     // MARK: - Navigation
 

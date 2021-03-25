@@ -60,7 +60,7 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
             make.width.equalToSuperview()
             make.left.equalToSuperview()
             make.height.equalTo(40)
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         
         outBtn.setTitle("支出\n¥\(abs(outSum))", for: .normal)

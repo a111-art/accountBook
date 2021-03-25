@@ -32,38 +32,63 @@ class CostViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = selectedBook?.bookName
         self.view.backgroundColor = .white
         
-        let label = UILabel(frame: CGRect(x: 40, y: 100, width: view.frame.size.width-80, height: 20))
+        let label = UILabel()
         label.text = "余额"
         label.font = UIFont(name: "Helvetica", size: 15)
         self.view.addSubview(label)
+        label.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.height.equalTo(20)
+            make.left.equalTo(40)
+        }
         
-        restMoneylabel.frame = CGRect(x: 45, y: 120, width: view.frame.size.width-80, height: 20)
-        restMoneylabel.text = String(selectedBook!.money)
+        restMoneylabel.text = "¥" + String(selectedBook!.money)
         restMoneylabel.font = UIFont(name: "Helvetica", size: 15)
-        /*label.textColor = .black
-        label.backgroundColor = .gray
-        label.textAlignment = .center*/
+        restMoneylabel.textColor = .white
+        restMoneylabel.backgroundColor = .blue
         self.view.addSubview(restMoneylabel)
-        //MARK: table
-        table.tableFooterView = UIView()
-        table.frame = CGRect(x: 0, y: 140, width: view.frame.width, height: view.frame.height-300)
-        table.backgroundColor = .white
-        view.addSubview(table)
-        table.dataSource = self
-        table.delegate = self
-        table.register(UINib.init(nibName: "CostCell", bundle: nil), forCellReuseIdentifier: "CostCell")
+        restMoneylabel.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(label.snp.bottom)
+            make.height.equalTo(label)
+            make.left.equalTo(label.snp.left).offset(5)
+        }
         
-        let addBtn = UIButton(frame: CGRect(x: 0, y: view.frame.size.height-80, width: view.frame.size.width/2, height: 80))
+        let addBtn = UIButton()
         addBtn.setTitle("添加账单", for: .normal)
         addBtn.setTitleColor(.black, for: .normal)
         self.view.addSubview(addBtn)
         addBtn.addTarget(self, action: #selector(add_Act), for: .touchUpInside)
+        addBtn.snp.makeConstraints{ (make) -> Void in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.height.equalTo(60)
+            make.width.equalToSuperview().dividedBy(2)
+            make.left.equalToSuperview()
+        }
         
-        let pieBtn = UIButton(frame: CGRect(x: view.frame.size.width/2, y: view.frame.size.height-80, width: view.frame.size.width/2, height: 80))
+        let pieBtn = UIButton()
         pieBtn.setTitle("统计界面", for: .normal)
         pieBtn.setTitleColor(.black, for: .normal)
         self.view.addSubview(pieBtn)
         pieBtn.addTarget(self, action: #selector(goPie), for: .touchUpInside)
+        pieBtn.snp.makeConstraints{ (make) -> Void in
+            make.top.height.width.equalTo(addBtn)
+            make.right.equalToSuperview()
+        }
+    
+        //MARK: table
+        table.dataSource = self
+        table.delegate = self
+        table.register(UINib.init(nibName: "CostCell", bundle: nil), forCellReuseIdentifier: "CostCell")
+        table.tableFooterView = UIView()
+        table.backgroundColor = .lightGray
+        view.addSubview(table)
+        table.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(restMoneylabel.snp.bottom).offset(5)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalTo(addBtn.snp.top).offset(-5)
+        }
+        
     }
     //MARK: dateFormatter
     static let dateFormatter: DateFormatter = {
@@ -151,7 +176,7 @@ class CostViewController: UIViewController, UITableViewDelegate, UITableViewData
         do {
             tagArray = try context.fetch(request)
         } catch {
-            print("载入Book错误：\(error)")
+            print("载入tags错误：\(error)")
         }
         let n = tagArray.count
         if n != 0 {
@@ -175,7 +200,7 @@ class CostViewController: UIViewController, UITableViewDelegate, UITableViewData
         for i in 0..<costArray.count {
             restMoney += costArray[i].money
         }
-        restMoneylabel.text = String(restMoney)
+        restMoneylabel.text = "¥" + String(restMoney)
     }
     
     func saveBook() {
