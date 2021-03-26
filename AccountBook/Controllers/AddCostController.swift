@@ -10,7 +10,7 @@ import CoreData
 import SnapKit
 
 protocol AddCost {
-    func addCost(name: String, date :Date, money: Float, img: Data?, tagName: String)
+    func addCost(name: String, date :Date, money: Double, img: Data?, tagName: String)
 }
 
 class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
@@ -440,14 +440,14 @@ class AddCostController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     }
     @objc func save_act () {
         var theMoney = resultLabel.text!.dropFirst()
-        if Float(theMoney)==nil {
+        if Double(theMoney)==nil {
             theMoney = "0"
         }
         if let imageData = imageView.image?.pngData(){
-            delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Float(theMoney)! * Float(inputType)), img: imageData, tagName: tagNameLabel.text!)
+            delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Double(theMoney)! * Double(inputType)), img: imageData, tagName: tagNameLabel.text!)
             self.dismiss(animated: true, completion: nil)
         } else {
-            delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Float(theMoney)! * Float(inputType)), img: nil, tagName: tagNameLabel.text!)
+            delegate?.addCost(name: nameTextField.text!, date: datePicker.date, money: (Double(theMoney)! * Double(inputType)), img: nil, tagName: tagNameLabel.text!)
             self.dismiss(animated: true, completion: nil)
         }
         

@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SnapKit
 protocol AddBook {
-    func addBook(name: String, money: Float, num: Int, img: Data)
+    func addBook(name: String, money: Double, num: Int, img: Data)
 }
 class AddBookController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -75,7 +75,7 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     @objc func saveBook(_sender: UIButton) {
         if name != "" && num != "" && money != ""{
             if let imageData = imageView.image?.pngData(){
-                delegate?.addBook(name: name, money: Float(money)!, num: Int(num)!, img: imageData)
+                delegate?.addBook(name: name, money: Double(money)!, num: Int(num)!, img: imageData)
                 self.navigationController?.popViewController(animated: true)
             }
         }

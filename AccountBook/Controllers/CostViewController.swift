@@ -128,7 +128,7 @@ class CostViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     //MARK: - Add New Costs
-    func addCost(name: String, date :Date, money: Float, img: Data?, tagName: String) {
+    func addCost(name: String, date :Date, money: Double, img: Data?, tagName: String) {
         let theTag = self.saveTag(name: tagName)
         let newCost = Cost(context: self.context)
         newCost.name = name

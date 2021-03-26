@@ -21,7 +21,7 @@ class HelpController: UIViewController {
         holder.layer.cornerRadius = 15
         self.view.addSubview(holder)
         holder.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview().offset(110)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(200)
