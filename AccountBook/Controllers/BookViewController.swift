@@ -227,7 +227,7 @@ class BookViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         self.present(alert, animated: true, completion: nil)
        }
     //MARK: Book actions
-    func addBook(name: String, money: Float, num: Int, img: Data) {
+    func addBook(name: String, money: Double, num: Int, img: Data) {
         let newBook = Book(context: self.context)
         newBook.bookName = name
         newBook.money = money

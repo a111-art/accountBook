@@ -11,7 +11,7 @@ protocol ChangeCost{
 }
 class CostDetailController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var str = ["","",""]
-    var money : Float?
+    var money : Double?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: ChangeCost?
 
@@ -128,7 +128,7 @@ class CostDetailController: UIViewController, UITableViewDataSource, UITableView
             print("标签: \(String(describing: textfield.text))")
             if index == 0{
                 self.moneyL.text = textfield.text
-                self.selectedCost?.setValue(Float(textfield.text!), forKey: "money")
+                self.selectedCost?.setValue(Double(textfield.text!), forKey: "money")
                 delegate?.changeCost(CostOnly: false)
             } else if index == 1{
                 self.selectedCost?.setValue(dateFormatter.date(from: (textfield.text!)), forKey: "date")

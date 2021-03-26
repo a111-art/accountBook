@@ -15,10 +15,10 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
     var tagArr = [Tag]()
     var costArr = [Cost]()
     var tagNameArr = [String]()
-    var tagMoneyArr = [Float]()
+    var tagMoneyArr = [Double]()
     var colors = [UIColor]()
-    var inSum: Float = 0
-    var outSum: Float = 0
+    var inSum: Double = 0
+    var outSum: Double = 0
     var inArr = [Cost]()
     var outArr = [Cost]()
     var startDate: Date?
@@ -102,7 +102,7 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
          pie.rotationEnabled = false
          pie.legend.enabled = false
          self.view.addSubview(pie)
-        customizeChart(dataPoints: tagNameArr, values: tagMoneyArr.map{ Float(Float($0)) })
+        customizeChart(dataPoints: tagNameArr, values: tagMoneyArr.map{ Double(Double($0)) })
          pie.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(inBtn.snp.bottom).offset(10)
              make.width.height.equalTo(250)
@@ -189,7 +189,7 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
         }
         
         let tagN = tagArr.count
-        tagMoneyArr = [Float](repeating: 0, count: tagN)
+        tagMoneyArr = [Double](repeating: 0, count: tagN)
         tagNameArr = [String](repeating: "", count: tagN)
         let costN = costs.count
         for i in 0..<tagN {
@@ -209,7 +209,7 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
                 i += 1
             }
         }
-        customizeChart(dataPoints: tagNameArr, values: tagMoneyArr.map{ Float($0) })
+        customizeChart(dataPoints: tagNameArr, values: tagMoneyArr.map{ Double($0) })
         table.reloadData()
     }
     //MARK: in out btn
@@ -224,7 +224,7 @@ class PieChartController: UIViewController, ChangeDate, UITableViewDelegate, UIT
         findTag(costs: inArr)
     }
     //MARK: pie
-    func customizeChart(dataPoints: [String], values: [Float]) {
+    func customizeChart(dataPoints: [String], values: [Double]) {
         // 1. Set ChartDataEntry
           var dataEntries: [ChartDataEntry] = []
           for i in 0..<dataPoints.count {
